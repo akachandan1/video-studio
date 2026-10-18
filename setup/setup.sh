@@ -98,6 +98,7 @@ s_voice() {
     [ -s "$M/$f" ] && ok "$f" || { curl -fL --progress-bar -o "$M/$f" "$KOKORO_MODELS_URL/$f" && ok "$f downloaded"; }
   done
   ok "HyperFrames TTS: HYPERFRAMES_PYTHON=$V/bin/python npx hyperframes tts \"Hello\" -v af_heart"
+  command -v edge-tts >/dev/null && ok "edge-tts" || { uv tool install -q edge-tts && ok "edge-tts installed (optional online voices)"; }
 }
 
 # ---------------------------------------------------------------- 7. Voice cleanup (DeepFilterNet)

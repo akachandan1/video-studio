@@ -1,0 +1,101 @@
+{
+  "title": "Why the Eiffel Tower grows every summer",
+  "angle": "A 7,300-tonne iron tower that changes height with the weather — how?",
+  "through_line": "the tower's silhouette, measured against a ruler",
+  "look": "collage",
+  "aspect": "16:9",
+  "voice": {
+    "engine": "kokoro",
+    "name": "am_michael"
+  },
+  "blocks": [
+    {
+      "line": "Every summer, the Eiffel Tower quietly grows. On the hottest days, it can stand up to fifteen centimetres taller.",
+      "callout": {
+        "big": "+15 cm",
+        "label": "taller on the hottest days"
+      },
+      "visual": {
+        "kind": "tower"
+      }
+    },
+    {
+      "line": "Finished in eighteen eighty-nine, it is eighteen thousand iron parts, held together by two and a half million rivets.",
+      "callout": {
+        "big": "2.5M",
+        "label": "rivets · 18,038 iron parts"
+      },
+      "visual": {
+        "kind": "dots",
+        "n": 96
+      }
+    },
+    {
+      "line": "Iron expands as it warms up. Every single metre of it grows about twelve thousandths of a millimetre for each degree of heat.",
+      "callout": {
+        "big": "0.012 mm",
+        "label": "per metre, per °C"
+      },
+      "visual": {
+        "kind": "bars",
+        "values": [
+          12,
+          24,
+          36,
+          48,
+          60,
+          72
+        ],
+        "highlight": 5
+      }
+    },
+    {
+      "line": "On its own, that sounds tiny. But spread it across three hundred metres of iron lattice, and one long Paris heatwave adds up very quickly.",
+      "callout": {
+        "big": "300 m",
+        "label": "of iron lattice"
+      },
+      "visual": {
+        "kind": "bars",
+        "values": [
+          8,
+          16,
+          30,
+          52,
+          78,
+          100
+        ],
+        "highlight": 5
+      }
+    },
+    {
+      "line": "The side facing the sun warms and expands first, so on bright afternoons the whole tower leans slightly, quietly, away from the sun.",
+      "callout": {
+        "big": "Sun side",
+        "label": "expands first → tilts away"
+      },
+      "visual": {
+        "kind": "lean"
+      }
+    },
+    {
+      "line": "So the tower breathes with the seasons. And every seven years, teams of painters coat it by hand, to protect two and a half million rivets from rust.",
+      "callout": {
+        "big": "7 yrs",
+        "label": "between hand repaints"
+      },
+      "visual": {
+        "kind": "calendar",
+        "n": 7
+      }
+    }
+  ],
+  "sources": [
+    "Interesting Engineering — The Eiffel Tower grows taller each summer: https://interestingengineering.com/culture/the-eiffel-tower-grow-taller-each-summer",
+    "Travel Tomorrow — The Eiffel Tower's surprising summer growth: https://traveltomorrow.com/the-eiffel-towers-surprising-summer-growth/",
+    "Anti-Corrosion Methods and Materials (2002) — 18,038 parts, 2.5 million rivets: https://www.emeraldinsight.com/insight/content/doi/10.1108/acmm.2002.12849daf.002/full/html",
+    "WERMAC — Eiffel Tower facts: https://www.wermac.org/civil_eng/eiffel.html",
+    "Science News Explores — Fun facts about the Eiffel Tower (repainted every seven years): https://www.snexplores.org/article/fun-facts-about-eiffel-tower",
+    "The Boar — Eiffel's seven-year repaint recommendation: https://theboar.org/2022/12/eiffel-tower-in-need-of-repair/"
+  ]
+}

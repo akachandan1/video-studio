@@ -27,6 +27,7 @@ here (adapted code, ported specs, fonts) is listed with full license texts in
 | Project | Role | License |
 |---|---|---|
 | [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M) by hexgrad · [kokoro-onnx](https://github.com/thewh1teagle/kokoro-onnx) by thewh1teagle | Offline text-to-speech (model files downloaded by setup) | Apache-2.0 / MIT |
+| [edge-tts](https://github.com/rany2/edge-tts) by rany2 | Optional online narration with Microsoft neural voices (text is sent to Microsoft's service) | LGPL-3.0 / GPL-3.0 |
 | [ONNX Runtime](https://github.com/microsoft/onnxruntime) by Microsoft | Runs the Kokoro model | MIT |
 | [DeepFilterNet](https://github.com/Rikorose/DeepFilterNet) by Hendrik Schröter | Voice noise removal | MIT / Apache-2.0 |
 | [PyTorch](https://pytorch.org) | DeepFilterNet runtime | BSD-3-Clause |
@@ -59,6 +60,10 @@ ask, after quoting the cost.
 - The caption kit's default "Lime Hook" look is a code rebuild of the style of a popular *Captions and Hooks*
   After Effects template. No template files or assets are used.
 - Editing grammar (chop cuts, punch-ins, flash frames) follows common short-form editing practice, as seen in apps like CapCut.
+- The `explainer` workflow's editorial-collage look is an homage to the visual language of Vox explainer videos;
+  it uses no Vox assets, name or branding and is not affiliated with Vox Media. Its staged, app-like guided flow
+  was inspired by a community "Vox Animation" studio-folder concept; the workflow, style guide and tools here are
+  written from scratch.
 - Explainer and art examples are homages to the Kurzgesagt visual style and to the painters and traditions they
   name. They are original works, not affiliated with or endorsed by Kurzgesagt.
 - Community files: Code of Conduct based on the [Contributor Covenant](https://www.contributor-covenant.org);

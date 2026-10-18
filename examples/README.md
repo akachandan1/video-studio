@@ -1,11 +1,12 @@
 # Examples
 
 Complete films made with the studio's own skills, with full source. Everything here is code: no stock
-footage, no AI-generated shots, no samples. Full-resolution MP4s are attached to the
+footage, no AI-generated shots, no samples. The explainer's facts are sourced in its `pack.json`. Full-resolution MP4s are attached to the
 [latest release](../../../releases/latest).
 
 | | Film | Made with | Source |
 |---|---|---|---|
+| <img src="../docs/media/explainer-eiffel.gif" width="320"> | **Why the Eiffel Tower grows every summer**, 60 s narrated Vox-style explainer, sourced, code-only (16:9 + 9:16) | `explainer` · `score` · Kokoro | [explainer-eiffel/](explainer-eiffel/) |
 | <img src="../docs/media/the-brief-169.gif" width="320"> | **The Brief**, 45 s chop-cut story reel (16:9 + 9:16) | `chop-reel` · `art-styles` · `score` · `caption-video` · motion-prompt · Kokoro | [the-brief/](the-brief/) |
 | <img src="../docs/media/great-pyramid.gif" width="320"> | **What's inside the Great Pyramid?**, 16 s Kurzgesagt-style flat science, cross-section to scale | `art-styles` (huashu custom scene) · `score` | [great-pyramid/](great-pyramid/) |
 | <img src="../docs/media/twelve-painters.gif" width="320"> | **Twelve Painters**, 25 s, one scene painted from Van Gogh to Kusama | `art-styles` · `score` | [twelve-painters/](twelve-painters/) |

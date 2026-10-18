@@ -25,6 +25,7 @@ HTML + GSAP compositions rendered deterministically to MP4. CLI pinned in `setup
 | Skill | What | Cost |
 |---|---|---|
 | `studio` | Front door: setup check, routing, house pipeline | 🟢 |
+| `explainer` | Vox-style narrated explainer: sourced script, 10 s blocks, style key + scene prompts or code collage, voice fit, captions/callouts | 🟢 / 🟡 AI scenes |
 | `chop-reel` | CapCut-style story reel, 16:9 + 9:16 (template: `templates/chop-reel`) | 🟢 |
 | `launch-film` | Apple/OpenAI-style launch film + fold-cut builder | 🟢 / 🟡 AI shots |
 | `ugc-ads` | Research → AI presenter → hook × ratio variants | 🟡 |
@@ -48,6 +49,7 @@ HTML + GSAP compositions rendered deterministically to MP4. CLI pinned in `setup
 |---|---|---|
 | Kokoro (kokoro-onnx) | Offline TTS: `HYPERFRAMES_PYTHON=~/.local/share/hf-kokoro/bin/python npx hyperframes tts "…" -v af_heart` (also `bm_george`, `am_michael`) | 🟢 |
 | DeepFilterNet3 | Voice noise removal (`~/.venvs/dfn/bin/deepFilter`) | 🟢 |
+| edge-tts | Microsoft neural voices (Christopher, Ryan, Jenny…) for the explainer, free but online | 🟢 |
 | WhisperX (via uvx) | Word-level transcripts for captions | 🟢 |
 | librosa (`score/scripts/beats.py`) | Beat grid of a supplied track | 🟢 |
 | ElevenLabs via Higgsfield `text2speech_v2` | Premium / cloned / Hindi voices | 🟡 |

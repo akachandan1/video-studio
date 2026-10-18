@@ -2,6 +2,15 @@
 
 All notable changes to this project are documented here. Versions follow [SemVer](https://semver.org).
 
+## [0.2.0] - 2026-10-19
+### Added
+- **`explainer` workflow**: guided, app-like flow for narrated, Vox-style explainers. Topic search, two-source
+  fact-checking, 10-second blocks, `collage` and `diorama` looks, style-key and scene prompts for any generator
+  (or Higgsfield after a cost quote), free code-built collage scenes, voice fitted per block (Kokoro or edge-tts),
+  HyperFrames assembly with counting callouts, marker annotations, captions and an original score, in 16:9 and 9:16.
+- `examples/explainer-eiffel`: a 60 s code-only explainer with sources.
+- Optional edge-tts voices in setup and doctor; the studio front door adopts the app-like message style.
+
 ## [0.1.0] - 2026-10-19
 First release.
 

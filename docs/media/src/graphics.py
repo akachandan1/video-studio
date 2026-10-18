@@ -42,7 +42,7 @@ else:  # architecture diagram
               ("Named moves", "motion-prompt"), ("Voice", "Kokoro · ElevenLabs"), ("Music & SFX", "synth.py · beats.py"),
               ("Captions", "WhisperX · caption kit"), ("Footage", "screen recs · talking heads")]
     cards = "".join(f'<div class="mk"><b>{a}</b><span class="mono">{b}</span></div>' for a, b in makers)
-    wf = ["studio", "chop-reel", "launch-film", "ugc-ads", "product-demo", "art-styles", "score", "caption-video"]
+    wf = ["studio", "explainer", "chop-reel", "launch-film", "ugc-ads", "product-demo", "art-styles", "score", "caption-video"]
     wfs = "".join(f'<span>{w}</span>' for w in wf)
     body = f"""
 <div class="lbl mono" style="top:44px">1 · YOU ASK, IN PLAIN WORDS</div>

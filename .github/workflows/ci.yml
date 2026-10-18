@@ -29,3 +29,8 @@ jobs:
           HF=$(grep HYPERFRAMES_VERSION setup/versions.env | cut -d= -f2 | cut -d' ' -f1)
           cd templates/hello-world && python score.py && npx --yes hyperframes@$HF lint && cd ../..
           cd templates/chop-reel && python score.py && for a in 169 916; do python build.py $a && npx --yes hyperframes@$HF lint || exit 1; done
+      - name: Explainer example builds + lints (no audio)
+        run: |
+          HF=$(grep HYPERFRAMES_VERSION setup/versions.env | cut -d= -f2 | cut -d' ' -f1)
+          cp -R examples/explainer-eiffel /tmp/exp && python .claude/skills/explainer/tools/build.py /tmp/exp --no-audio
+          cd /tmp/exp && npx --yes hyperframes@$HF lint

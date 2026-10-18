@@ -14,7 +14,7 @@ project (HTML + GSAP, rendered with `npx hyperframes`). Other tools make assets 
 ## Where things go
 - `videos/<name>/` — one HyperFrames project per job (gitignored). Start from `templates/` when one fits.
 - `out/` — finished MP4s (gitignored).
-- `.claude/skills/` — studio workflows (auto-loaded): studio, chop-reel, launch-film, ugc-ads, ugc-actor,
+- `.claude/skills/` — studio workflows (auto-loaded): studio, explainer, chop-reel, launch-film, ugc-ads, ugc-actor,
   product-demo, art-styles, score, caption-video.
 - `docs/PLAYBOOK.md` — house rules (read once per session). `docs/CATALOG.md` — every tool, cost, source.
   `docs/SECRETS.md` — how each person connects their own accounts.

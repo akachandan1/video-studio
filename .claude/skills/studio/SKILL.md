@@ -18,6 +18,11 @@ assets inside a HyperFrames composition. Load the `hyperframes` skill for compos
    `cp -R templates/hello-world videos/hello-world && cd videos/hello-world && ../../.venv/bin/python score.py && npx --yes hyperframes@0.8.172 render -o ../../out/hello-world.mp4`
    then send the MP4. This proves the whole pipeline works before any real job.
 
+## How every message should feel
+Like a well-made app: one stage per message and then wait; bold stage titles; choices as tables; short lines;
+pasteable blocks that contain only what gets pasted; no narration of internal steps (file writes, checks,
+timing maths). Speak where the user acts or something is missing.
+
 ## 2. Ask what they're making (plain words, no skill names)
 If the request is vague, ask ONE question with options (AskUserQuestion), then route:
 
@@ -27,6 +32,7 @@ If the request is vague, ask ONE question with options (AskUserQuestion), then r
 | Apple / OpenAI-style product launch film, premium spec ad | `launch-film` | optional Higgsfield credits for AI shots |
 | UGC / creator-style ads, AI presenter, ad variants for Meta/TikTok | `ugc-ads` (+ `ugc-actor` for casting) | Higgsfield credits |
 | Screen recording → polished product walkthrough | `product-demo` | a recording; optional VO script (.srt) |
+| Narrated, fact-checked explainer in a Vox-style collage or paper-diorama look ("why does X happen?") | `explainer` | nothing paid (AI scenes optional) |
 | Painterly / Kurzgesagt-style explainer, art-history styles, science "what's inside" | `art-styles` | nothing paid |
 | Captions / subtitles / hook on a talking video, clean up audio | `caption-video` | the video |
 | Recut a long talking-head into a short (TikTok/Reels) with B-roll graphics | `talking-head-recut` (HyperFrames) + `caption-video` | the video |

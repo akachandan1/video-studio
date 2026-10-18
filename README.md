@@ -70,6 +70,10 @@ New to all of this? Read the one-page [**START-HERE.md**](START-HERE.md).
 <td><img src="docs/media/eight-eras.gif" alt="Eight Eras"><br><b>Eight Eras</b>: from cave painting to Persian miniature. <a href="examples/eight-eras/">source</a></td>
 </tr>
 <tr>
+<td><img src="docs/media/explainer-eiffel.gif" alt="Eiffel explainer"><br><b>Why the Eiffel Tower grows every summer</b>: a 60 s Vox-style explainer, narrated, sourced, made entirely in code. <a href="examples/explainer-eiffel/">source</a></td>
+<td align="center"><img src="docs/media/explainer-eiffel-916.gif" alt="Eiffel explainer vertical" width="46%"><br><b>Same explainer, 9:16.</b> Captions and callouts re-laid out for vertical.</td>
+</tr>
+<tr>
 <td><img src="docs/media/chop-reel-template.gif" alt="Chop-reel template"><br><b>Chop-reel template</b>: punch-ins, flash frames, shakes and a whip pan on a 150 BPM grid. Renders 16:9 and 9:16. <a href="templates/chop-reel/">template</a></td>
 <td align="center"><img src="docs/media/the-brief-916.gif" alt="The Brief vertical" width="46%"><br><b>Same edit, 9:16.</b> Layouts are relative to the stage, so one edit serves every platform.</td>
 </tr>
@@ -85,6 +89,7 @@ Full-resolution MP4s are on the [Releases](https://github.com/akachandan1/video-
 | "an Apple-style launch film for my product" | [`launch-film`](.claude/skills/launch-film/SKILL.md): signature transitions, minimal supers, piano score, fold-cut builder | free · AI shots optional |
 | "UGC ads for Meta and TikTok, 3 hooks, 2 ratios" | [`ugc-ads`](.claude/skills/ugc-ads/SKILL.md) + [`ugc-actor`](.claude/skills/ugc-actor/SKILL.md): ad research first, then AI presenter and variants anchored to spoken words | AI presenter |
 | "turn this screen recording into a product demo" | [`product-demo`](.claude/skills/product-demo/SKILL.md): cursor tracking, auto camera, click ripples, chapters, callouts, VO from a script | free |
+| "a Vox-style explainer: why does the Eiffel Tower grow in summer?" | [`explainer`](.claude/skills/explainer/SKILL.md): guided flow, two-source fact-checking, 10-second blocks, style key and scene prompts (or free code-built collage), voice fitted per block, captions and callouts | free · AI scenes optional |
 | "a Kurzgesagt-style explainer" / "paint it like Monet" | [`art-styles`](.claude/skills/art-styles/SKILL.md) | free |
 | "caption this video and add a hook" | [`caption-video`](.claude/skills/caption-video/SKILL.md): 7 styles previewed on *your* footage, voice cleanup, grade | free |
 | "write original music that hits on every cut" | [`score`](.claude/skills/score/SKILL.md): synth library, cue sheets, beat detection for supplied tracks | free |
@@ -141,11 +146,11 @@ claude plugin install video-studio@video-studio
 ```
 CLAUDE.md               what Claude reads first: HyperFrames core, first-run steps, rules
 START-HERE.md           one-page guide for people new to all this
-.claude/skills/         studio workflows (auto-loaded): studio · chop-reel · launch-film · ugc-ads · ugc-actor
-                        product-demo · art-styles · score · caption-video
+.claude/skills/         studio workflows (auto-loaded): studio · explainer · chop-reel · launch-film · ugc-ads
+                        ugc-actor · product-demo · art-styles · score · caption-video
 .claude/settings.json   session-start hook → setup/doctor.sh
 templates/              hello-world (proof render) · chop-reel (16:9 + 9:16 engine with score)
-examples/               complete films with source: the-brief · great-pyramid · twelve-painters · eight-eras
+examples/               complete films with source: explainer-eiffel · the-brief · great-pyramid · twelve-painters · eight-eras
 setup/                  setup.sh · doctor.sh · versions.env
 docs/                   PLAYBOOK · CATALOG · SECRETS · media/ (README graphics + their source)
 videos/  out/           your projects and renders (gitignored, stay on your machine)

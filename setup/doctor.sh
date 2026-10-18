@@ -40,6 +40,7 @@ chk opt "Fal music-video plugin"      'claude plugin list 2>/dev/null | grep -q 
 chk opt "Homebrew Ruby on PATH (plugin)" 'ruby -e "exit(RUBY_VERSION.to_i >= 3 ? 0 : 1)"'        "setup/setup.sh --only plugins --add-path, then restart the app"
 chk opt "claude-animation plugin"     'claude plugin list 2>/dev/null | grep -q claude-animation' "setup/setup.sh --only plugins"
 chk opt "Arcads plugin (ad research)" 'claude plugin list 2>/dev/null | grep -q "arcads@"'        "setup/setup.sh --only plugins"
+chk opt "edge-tts (online neural voices)" 'command -v edge-tts || [ -x ~/.local/bin/edge-tts ]' "setup/setup.sh --only voice"
 chk opt "Topaz Video (upscale)"       'ls -d /Applications/Topaz\ Video*.app'                    "paid app, install yourself; fallback: ffmpeg scale=lanczos"
 
 if [ $Q = 1 ]; then
