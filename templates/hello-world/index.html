@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Hello, Video Studio</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      :root { --bg: #0e0e10; --fg: #f4f1ea; --dim: #9a958c; --accent: #ff5a1f; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--bg); font-family: Inter, "Helvetica Neue", Arial, sans-serif; color: var(--fg); }
+      #dot { position: absolute; left: 960px; top: 540px; width: 160px; height: 160px; margin: -80px 0 0 -80px; border-radius: 50%; background: var(--accent); }
+      #title { position: absolute; left: 0; right: 0; top: 400px; text-align: center; font-size: 150px; font-weight: 800; letter-spacing: -0.04em; }
+      #title span { display: inline-block; }
+      #sub { position: absolute; left: 0; right: 0; top: 610px; text-align: center; font-size: 40px; color: var(--dim); letter-spacing: 0.02em; }
+      #sub b { color: var(--accent); font-weight: 700; }
+      #bar { position: absolute; left: 760px; top: 700px; width: 400px; height: 6px; border-radius: 3px; background: var(--accent); transform-origin: 0 50%; }
+      #title span, #sub, #bar, #end { opacity: 0; }
+      #end { position: absolute; left: 0; right: 0; top: 500px; text-align: center; font-size: 64px; font-weight: 700; letter-spacing: -0.02em; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="8" data-width="1920" data-height="1080">
+      <div id="dot" class="clip" data-start="0" data-duration="8" data-track-index="0"></div>
+      <div id="title" class="clip" data-start="0" data-duration="8" data-track-index="1"><span>Hello,</span> <span>Video</span> <span>Studio.</span></div>
+      <div id="sub" class="clip" data-start="0" data-duration="8" data-track-index="2">Your setup works. Rendered with <b>HyperFrames</b>.</div>
+      <div id="bar" class="clip" data-start="0" data-duration="8" data-track-index="3"></div>
+      <div id="end" class="clip" data-start="0" data-duration="8" data-track-index="4">Now tell Claude what to make.</div>
+      <audio id="score" src="assets/audio/score.wav" data-start="0" data-duration="8" data-track-index="10" data-volume="0.9"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      // dot pops in on beat 1, squashes, then shrinks behind the title (beats at 0.5 s, 120 BPM)
+      tl.fromTo("#dot", { scale: 0 }, { scale: 1, duration: 0.5, ease: "back.out(2.2)" }, 0.0);
+      tl.to("#dot", { scaleX: 1.25, scaleY: 0.8, duration: 0.12, ease: "power2.out", yoyo: true, repeat: 1 }, 0.5);
+      tl.to("#dot", { scale: 0.18, x: -520, y: -330, duration: 0.6, ease: "expo.inOut" }, 1.0);
+      // staggered title words on the beat
+      tl.fromTo("#title span", { opacity: 0, y: 80, rotate: 4 }, { opacity: 1, y: 0, rotate: 0, duration: 0.6, ease: "expo.out", stagger: 0.5 }, 1.0);
+      tl.fromTo("#sub", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 2.6);
+      tl.fromTo("#bar", { opacity: 1, scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: "power3.inOut" }, 3.0);
+      // out, then the end line
+      tl.to(["#title", "#sub", "#bar"], { opacity: 0, y: -40, duration: 0.4, ease: "power2.in", stagger: 0.05 }, 5.0);
+      tl.to("#dot", { scale: 1, x: 0, y: 0, duration: 0.6, ease: "expo.inOut" }, 5.0);
+      tl.to("#dot", { scale: 14, duration: 0.6, ease: "expo.in" }, 5.6);
+      tl.set("#root", { backgroundColor: "#ff5a1f" }, 6.2);
+      tl.set("#dot", { opacity: 0 }, 6.2);
+      tl.fromTo("#end", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, color: "#0e0e10", duration: 0.5, ease: "back.out(1.6)" }, 6.25);
+      tl.to("#end", { opacity: 0, duration: 0.4 }, 7.5);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

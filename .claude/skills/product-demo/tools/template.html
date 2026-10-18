@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>__TITLE__</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --bg: #0a0c11;
+        --ink: #f3f1ee;
+        --muted: #b9bfca;
+        --accent: __ACCENT__;
+        --accent-soft: color-mix(in srgb, var(--accent) 16%, transparent);
+        --glass: rgba(13, 15, 21, 0.86);
+        --line: rgba(255, 255, 255, 0.09);
+      }
+      body { margin: 0; background: var(--bg); color: var(--ink); font-family: Inter, sans-serif; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--bg); }
+
+      /* stage background */
+      #bg { position: absolute; inset: 0; overflow: hidden; }
+      .glow { position: absolute; border-radius: 50%; filter: blur(40px); }
+      #glow-a { width: 1200px; height: 900px; left: -380px; top: -420px; background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 22%, transparent), transparent); }
+      #glow-b { width: 1100px; height: 900px; right: -420px; bottom: -520px; background: radial-gradient(closest-side, rgba(90, 110, 160, 0.18), transparent); }
+      #grid { position: absolute; left: -80px; top: -80px; width: 2080px; height: 1240px;
+        background-image: linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+        background-size: 80px 80px; }
+
+      /* camera + window (content space __W__x__H__ = the cropped recording) */
+      #cam { position: absolute; left: 0; top: 0; width: __W__px; height: __H__px; transform-origin: 0 0; }
+      #win { position: absolute; inset: 0; border-radius: 22px; overflow: hidden; background: #090b0f ;
+        box-shadow: 0 0 0 1.5px rgba(255,255,255,0.10), 0 40px 120px rgba(0,0,0,0.65), 0 0 80px rgba(244,122,42,0.08); }
+      #demo { position: absolute; left: 0; top: 0; width: __W__px; height: __H__px; object-fit: cover; }
+      #fx { position: absolute; inset: 0; pointer-events: none; }
+      .ring { position: absolute; width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 50%; border: 5px solid var(--accent); opacity: 0;
+        box-shadow: 0 0 24px rgba(244,122,42,0.55); }
+      .dot { position: absolute; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; background: rgba(244,122,42,0.55); opacity: 0; }
+      .spot { position: absolute; border-radius: 20px; opacity: 0; box-shadow: 0 0 0 5000px rgba(4,6,9,0.58), 0 0 0 4px var(--accent), 0 0 46px rgba(244,122,42,0.45); }
+
+      /* overlays */
+      .pill { position: absolute; left: 40px; top: 30px; display: flex; align-items: center; gap: 12px; height: 46px; padding: 0 22px 0 18px;
+        background: var(--glass); border: 1px solid var(--line); border-radius: 999px; font: 700 18px Inter, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0; }
+      .pill b { color: var(--accent); font-weight: 700; }
+      .pill i { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+
+      .chap { position: absolute; left: 0; bottom: 0; width: 1500px; height: 640px; opacity: 0;
+        background: radial-gradient(110% 100% at 0% 100%, rgba(6,8,12,0.97) 38%, rgba(6,8,12,0.8) 55%, rgba(6,8,12,0.0) 80%); }
+      .chap .in { position: absolute; left: 76px; bottom: 150px; width: 1100px; }
+      .chap .num { font: 700 30px Montserrat, sans-serif; color: var(--accent); letter-spacing: 0.2em; }
+      .chap .ttl { font: 900 104px/1.02 Montserrat, sans-serif; letter-spacing: -0.02em; margin-top: 8px; }
+      .chap .sub { font: 400 34px Inter, sans-serif; color: var(--muted); margin-top: 18px; }
+      .chap .bar { width: 120px; height: 5px; background: var(--accent); margin-top: 26px; border-radius: 3px; transform-origin: 0 50%; }
+
+      .call { position: absolute; right: 48px; top: 100px; width: 500px; padding: 28px 34px 30px; background: var(--glass);
+        border: 1px solid var(--line); border-radius: 22px; box-shadow: 0 24px 60px rgba(0,0,0,0.5); opacity: 0; }
+      .call.left { right: auto; left: 48px; top: 104px; }
+      .call .k { font: 700 16px Inter, sans-serif; letter-spacing: 0.18em; color: var(--accent); text-transform: uppercase; }
+      .call .big { font: 900 92px/1 Montserrat, sans-serif; margin-top: 12px; letter-spacing: -0.02em; }
+      .call .big.w { font-size: 56px; line-height: 1.05; }
+      .call .lab { font: 400 27px/1.35 Inter, sans-serif; color: #d3d7de; margin-top: 12px; }
+
+      .cap { position: absolute; left: 0; right: 0; bottom: 42px; display: flex; justify-content: center; opacity: 0; }
+      .cap span { max-width: 1420px; padding: 12px 26px; background: rgba(7,9,13,0.82); border-radius: 14px; font: 400 32px/1.3 Inter, sans-serif; color: #f1f1f1; text-align: center; }
+
+      #intro, #outro { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      .brand { font: 700 40px Montserrat, sans-serif; color: var(--accent); letter-spacing: -0.01em; }
+      .brand small { display: block; font: 400 17px Inter, sans-serif; color: #c98b5c; letter-spacing: 0.04em; margin-top: 2px; text-align: center; }
+      .hero { font: 900 200px/1 Montserrat, sans-serif; letter-spacing: -0.03em; margin-top: 34px; }
+      .hero span { color: var(--accent); }
+      .tag { font: 400 38px Inter, sans-serif; color: var(--muted); margin-top: 26px; }
+      .kick { font: 700 18px Inter, sans-serif; letter-spacing: 0.3em; color: var(--accent); text-transform: uppercase; margin-top: 44px; }
+      #outro .hero { font-size: 150px; }
+      .chips { display: flex; gap: 14px; margin-top: 40px; flex-wrap: wrap; justify-content: center; width: 1500px; }
+      .chips div { padding: 12px 24px; border: 1px solid rgba(244,122,42,0.45); border-radius: 999px; font: 700 24px Inter, sans-serif; color: #f6d9c4; background: rgba(244,122,42,0.08); }
+      .url { font: 700 34px Inter, sans-serif; margin-top: 48px; letter-spacing: 0.02em; }
+      #shade { position: absolute; inset: 0; background: rgba(6,8,12,0.78); opacity: 0; }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-yn08" id="root" data-composition-id="main" data-start="0" data-width="1920" data-height="1080" data-duration="__TOTAL__">
+      <div data-hf-id="hf-2xc0" id="bg"><div data-hf-id="hf-sleo" id="grid" data-layout-allow-overflow></div><div data-hf-id="hf-li45" class="glow" id="glow-a" data-layout-allow-overflow></div><div data-hf-id="hf-pg86" class="glow" id="glow-b" data-layout-allow-overflow></div></div>
+
+      <div data-hf-id="hf-ftaq" id="cam">
+        <div data-hf-id="hf-7on1" id="win">
+          <video data-hf-id="hf-qft8" id="demo" class="clip" src="assets/demo.mp4" muted playsinline data-start="__INTRO__" data-duration="__SRCDUR__" data-track-index="0"></video>
+          <div data-hf-id="hf-775n" id="fx"></div>
+        </div>
+      </div>
+
+      <div data-hf-id="hf-o7h2" id="ovl"></div>
+      <div data-hf-id="hf-pwjg" id="shade"></div>
+
+      <div data-hf-id="hf-j6bt" id="intro">
+        <div data-hf-id="hf-0tpw" class="brand" id="i-brand">__BRAND__<small data-hf-id="hf-ddau">__BRAND_LINE__</small></div>
+        <div data-hf-id="hf-8s3b" class="hero" id="i-hero">__PRODUCT__</div>
+        <div data-hf-id="hf-agzq" class="tag" id="i-tag">__TAGLINE__</div>
+        <div data-hf-id="hf-ubnh" class="kick" id="i-kick">Product walkthrough</div>
+      </div>
+
+      <div data-hf-id="hf-nj2e" id="outro">
+        <div data-hf-id="hf-hl9u" class="brand" id="o-brand">__BRAND__<small data-hf-id="hf-47sq">__BRAND_LINE__</small></div>
+        <div data-hf-id="hf-gmnt" class="hero" id="o-hero">__PRODUCT__</div>
+        <div data-hf-id="hf-v2no" class="chips" id="o-chips">
+          __CHIPS__
+        </div>
+        <div data-hf-id="hf-0ydl" class="url" id="o-url">__URL__</div>
+      </div>
+
+      <audio data-hf-id="hf-qwex" id="mix" src="assets/mix.wav" data-start="0" data-duration="__TOTAL__" data-track-index="1" data-volume="1"></audio>
+    </div>
+
+    <script>
+      /*__DATA__*/
+      const fx = document.getElementById("fx");
+      const ovl = document.getElementById("ovl");
+      const el = (tag, cls, parent, html) => { const n = document.createElement(tag); if (cls) n.className = cls; if (html != null) n.innerHTML = html; parent.appendChild(n); return n; };
+      const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+
+      const tl = gsap.timeline({ paused: true });
+      const END = D.TOTAL;
+
+      // ambient background
+      tl.fromTo("#grid", { x: 0, y: 0 }, { x: 80, y: 40, duration: END, ease: "none" }, 0);
+      tl.fromTo("#glow-a", { scale: 1, opacity: 0.85 }, { scale: 1.12, opacity: 1, duration: 9, ease: "sine.inOut", repeat: Math.max(0, Math.floor(END / 9) - 1), yoyo: true }, 0);
+      tl.fromTo("#glow-b", { scale: 1.1 }, { scale: 0.95, duration: 11, ease: "sine.inOut", repeat: Math.max(0, Math.floor(END / 11) - 1), yoyo: true }, 0);
+
+      // intro
+      const [rx, ry, rs] = D.rest;
+      tl.fromTo("#i-brand", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 0.25);
+      tl.fromTo("#i-hero", { y: 60, opacity: 0, scale: 0.96 }, { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: "expo.out" }, 0.45);
+      tl.fromTo("#i-tag", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 0.85);
+      tl.fromTo("#i-kick", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 1.1);
+      tl.to("#intro", { y: -60, opacity: 0, duration: 0.7, ease: "power2.in" }, D.INTRO - 1.0);
+      tl.fromTo("#cam", { x: rx + D.W * rs * 0.06, y: ry + 140, scale: rs * 0.88, opacity: 0 },
+                        { x: rx, y: ry, scale: rs, opacity: 1, duration: 1.0, ease: "power3.out" }, D.INTRO - 0.7);
+
+      // camera path
+      for (let i = 0; i + 1 < D.cam.length; i++) {
+        const a = D.cam[i], b = D.cam[i + 1];
+        if (a[0] < D.INTRO) continue;
+        if (a[1] === b[1] && a[2] === b[2] && a[3] === b[3]) continue;
+        const dur = Math.max(0.05, b[0] - a[0]);
+        tl.fromTo("#cam", { x: a[1], y: a[2], scale: a[3] }, { x: b[1], y: b[2], scale: b[3], duration: dur, ease: "power3.inOut", immediateRender: false }, a[0]);
+      }
+
+      // click ripples
+      D.ripples.forEach((p) => {
+        const ring = el("div", "ring", fx); ring.style.left = p.x + "px"; ring.style.top = p.y + "px";
+        const dot = el("div", "dot", fx); dot.style.left = p.x + "px"; dot.style.top = p.y + "px";
+        tl.fromTo(dot, { scale: 0.5, opacity: 0.95 }, { scale: 1.4, opacity: 0, duration: 0.45, ease: "power2.out", immediateRender: false }, p.t - 0.02);
+        tl.fromTo(ring, { scale: 0.25, opacity: 1 }, { scale: 1.15, opacity: 0, duration: 0.65, ease: "power2.out", immediateRender: false }, p.t - 0.02);
+      });
+
+      // spotlights
+      D.spots.forEach((s) => {
+        const sp = el("div", "spot", fx);
+        Object.assign(sp.style, { left: s.x + "px", top: s.y + "px", width: s.w + "px", height: s.h + "px" });
+        tl.fromTo(sp, { opacity: 0, scale: 1.04 }, { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out", immediateRender: false }, s.t0 + 0.35);
+        tl.to(sp, { opacity: 0, duration: 0.4, ease: "power1.in" }, s.t1 - 0.3);
+      });
+
+      // chapter pill + chapter title cards
+      D.chapters.forEach((c, i) => {
+        const next = i + 1 < D.chapters.length ? D.chapters[i + 1].t : D.INTRO + D.SRC_DUR - 3;
+        const pill = el("div", "pill", ovl, `<i></i><b>${c.n}</b><span>${esc(c.title)}</span>`);
+        tl.fromTo(pill, { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.45, ease: "power2.out", immediateRender: false }, c.t + 0.2);
+        tl.to(pill, { opacity: 0, duration: 0.3 }, next - 0.05);
+        const ch = el("div", "chap", ovl, `<div class="in"><div class="num">${c.n}</div><div class="ttl">${esc(c.title)}</div><div class="sub">${esc(c.sub)}</div><div class="bar"></div></div>`);
+        const t0 = c.t, hold = 2.9;
+        tl.fromTo(ch, { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out", immediateRender: false }, t0);
+        tl.fromTo(ch.querySelector(".num"), { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out", immediateRender: false }, t0 + 0.05);
+        tl.fromTo(ch.querySelector(".ttl"), { y: 46, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "expo.out", immediateRender: false }, t0 + 0.12);
+        tl.fromTo(ch.querySelector(".sub"), { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power2.out", immediateRender: false }, t0 + 0.3);
+        tl.fromTo(ch.querySelector(".bar"), { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.out", immediateRender: false }, t0 + 0.35);
+        tl.to(ch, { opacity: 0, duration: 0.45, ease: "power1.in" }, t0 + hold);
+      });
+
+      // stat callouts
+      D.callouts.forEach((c) => {
+        const wordy = !/^[0-9]+$/.test(c.big);
+        const card = el("div", "call" + (c.side === "left" ? " left" : ""), ovl, `<div class="k">Key insight</div><div class="big${wordy ? " w" : ""}">${esc(c.big)}</div><div class="lab">${esc(c.label)}</div>`);
+        tl.fromTo(card, { opacity: 0, y: -18, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.6)", immediateRender: false }, c.t);
+        tl.fromTo(card.querySelector(".big"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out", immediateRender: false }, c.t + 0.12);
+        tl.to(card, { opacity: 0, y: -10, duration: 0.35, ease: "power1.in" }, c.t + c.hold);
+      });
+
+      // captions
+      D.caps.forEach((c) => {
+        const cap = el("div", "cap", ovl, `<span>${esc(c.text)}</span>`);
+        tl.fromTo(cap, { opacity: 0 }, { opacity: 1, duration: 0.12, immediateRender: false }, c.t0);
+        tl.to(cap, { opacity: 0, duration: 0.1 }, Math.max(c.t0 + 0.2, c.t1 - 0.1));
+      });
+
+      // outro
+      const OUT = D.INTRO + D.SRC_DUR - 2.6;
+      tl.to("#cam", { x: rx + D.W * rs * 0.08, y: ry + 60, scale: rs * 0.84, duration: 1.4, ease: "power2.inOut" }, OUT - 0.4);
+      tl.to("#shade", { opacity: 1, duration: 0.9, ease: "power1.inOut" }, OUT);
+      tl.to("#cam", { opacity: 0, duration: 1.0 }, OUT + 1.4);
+      tl.fromTo("#o-brand", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, OUT + 0.5);
+      tl.fromTo("#o-hero", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "expo.out" }, OUT + 0.65);
+      tl.fromTo("#o-chips div", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out", stagger: 0.07 }, OUT + 1.0);
+      tl.fromTo("#o-url", { opacity: 0 }, { opacity: 1, duration: 0.6 }, OUT + 1.6);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

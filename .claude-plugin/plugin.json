@@ -1,0 +1,8 @@
+{
+  "name": "video-studio",
+  "version": "0.1.0",
+  "description": "Video Studio: HyperFrames-powered video workflows for Claude Code — chop-cut reels, launch films, UGC ads, product demos, art-style animation, captions and synthesized scores.",
+  "author": { "name": "Chandan" },
+  "keywords": ["video", "hyperframes", "motion-graphics", "captions", "ads"],
+  "skills": "./.claude/skills/"
+}

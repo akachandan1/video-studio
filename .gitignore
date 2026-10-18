@@ -1,0 +1,26 @@
+# your work stays local
+videos/*
+!videos/.gitkeep
+out/*
+!out/.gitkeep
+
+# generated
+.venv/
+node_modules/
+.hyperframes/
+renders/
+snapshots/
+templates/chop-reel/index.html
+templates/*/assets/audio/*.wav
+*.mp4
+*.mov
+*.webm
+*.wav
+*.mp3
+__pycache__/
+.DS_Store
+
+# secrets
+.env
+*.key
+.claude/settings.local.json

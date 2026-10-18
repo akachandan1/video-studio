@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Product — fold-cut launch film</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      /* Inter: clean premium-launch register (SF Pro is not redistributable). */
+      :root {
+        --ink: #1d1d1f;
+        --paper: #f5f5f7;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #000;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #000;
+        font-family: "Inter", sans-serif;
+        color: #fff;
+      }
+      .shot {
+        position: absolute;
+        inset: 0;
+        perspective: 2600px;
+      }
+      .half {
+        position: absolute;
+        top: 0;
+        width: 960px;
+        height: 1080px;
+        overflow: hidden;
+        will-change: transform;
+      }
+      .half.l {
+        left: 0;
+        transform-origin: 100% 50%;
+      }
+      .half.r {
+        left: 960px;
+        transform-origin: 0% 50%;
+      }
+      .half video {
+        position: absolute;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+        object-fit: cover;
+      }
+      .half.l video {
+        left: 0;
+      }
+      .half.r video {
+        left: -960px;
+      }
+      .shade {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        opacity: 0;
+      }
+      .half.l .shade {
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9));
+      }
+      .half.r .shade {
+        background: linear-gradient(270deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9));
+      }
+
+      /* supers */
+      .super {
+        position: absolute;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        text-align: center;
+        letter-spacing: -0.02em;
+      }
+      .super .ln {
+        overflow: hidden;
+        padding: 0 0 8px;
+      }
+      .super span {
+        display: inline-block;
+      }
+      .super.hero {
+        left: 1060px;
+        right: 110px;
+        top: 440px;
+        text-align: left;
+        font-size: 96px;
+        font-weight: 700;
+        line-height: 1.08;
+        text-shadow: 0 2px 40px rgba(0, 0, 0, 0.55);
+      }
+      .super.hero.left {
+        left: 110px;
+        right: auto;
+        width: 600px;
+        top: 400px;
+        font-size: 84px;
+      }
+      .super.hero .ln + .ln {
+        font-weight: 400;
+        color: #d2d2d7;
+      }
+      .super.lower {
+        bottom: 96px;
+        font-size: 62px;
+        font-weight: 700;
+        line-height: 1.12;
+        text-shadow: 0 2px 30px rgba(0, 0, 0, 0.7);
+      }
+      .super.lower .ln + .ln {
+        font-size: 38px;
+        font-weight: 400;
+        color: #e8e8ed;
+        letter-spacing: -0.01em;
+        margin-top: 6px;
+      }
+      #lower-scrim {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 420px;
+        z-index: 90;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.55));
+        opacity: 0;
+      }
+
+      /* end card on the pale hero shot */
+      #endcard {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 64px;
+        z-index: 100;
+        text-align: center;
+        color: var(--ink);
+      }
+      #end-logo {
+        font-size: 116px;
+        font-weight: 700;
+        letter-spacing: -0.035em;
+        line-height: 1;
+      }
+      #end-tag {
+        margin-top: 10px;
+        font-size: 46px;
+        font-weight: 400;
+        letter-spacing: -0.02em;
+        color: #3a3a3c;
+      }
+      #end-date {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 70px;
+        z-index: 100;
+        text-align: center;
+        font-size: 32px;
+        font-weight: 400;
+        color: #3a3a3c;
+      }
+      #end-date b {
+        font-weight: 700;
+        color: var(--ink);
+      }
+      #blackout {
+        position: absolute;
+        inset: 0;
+        z-index: 200;
+        background: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="40" data-width="1920" data-height="1080">
+      <!--SHOTS-->
+
+      <div id="overlay" class="clip" data-start="0" data-duration="40" data-track-index="3" style="position: absolute; inset: 0; z-index: 90; pointer-events: none">
+        <div id="lower-scrim" data-layout-allow-occlusion></div>
+      </div>
+
+      <div id="type" class="clip" data-start="0" data-duration="40" data-track-index="4" style="position: absolute; inset: 0; z-index: 100">
+        <!--SUPERS-->
+        <div id="endcard">
+          <div id="end-logo"><span id="end-logo-in">Product Name</span></div>
+          <div id="end-tag"><span id="end-tag-in">Your tagline.</span></div>
+        </div>
+        <div id="end-date"><span id="end-date-in">Available <b>soon</b>.</span></div>
+      </div>
+
+      <div id="fx" class="clip" data-start="0" data-duration="40" data-track-index="5" style="position: absolute; inset: 0; z-index: 200; pointer-events: none">
+        <div id="blackout" data-layout-allow-occlusion></div>
+      </div>
+
+      <audio id="score" src="assets/audio/score.wav" data-start="0" data-duration="40" data-track-index="10" data-volume="1"></audio>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+
+      // outgoing shot's halves hinge shut onto the centre line, completing on `cue`
+      function fold(outId, inId, cue, dur) {
+        const t0 = cue - dur;
+        tl.fromTo(`#${outId}-l`, { rotationY: 0 }, { rotationY: 90, duration: dur, ease: "power2.in", immediateRender: false }, t0);
+        tl.fromTo(`#${outId}-r`, { rotationY: 0 }, { rotationY: -90, duration: dur, ease: "power2.in", immediateRender: false }, t0);
+        tl.fromTo([`#${outId}-l-sh`, `#${outId}-r-sh`], { opacity: 0 }, { opacity: 1, duration: dur, ease: "power2.in", immediateRender: false }, t0);
+        // incoming shot settles from a slight push
+        tl.fromTo(`#${inId}`, { scale: 1.06 }, { scale: 1, duration: 1.2, ease: "expo.out" }, t0);
+      }
+
+      // incoming shot's halves swing open from the centre line
+      function unfold(inId, start, dur) {
+        tl.fromTo(`#${inId}-l`, { rotationY: 90 }, { rotationY: 0, duration: dur, ease: "expo.out" }, start);
+        tl.fromTo(`#${inId}-r`, { rotationY: -90 }, { rotationY: 0, duration: dur, ease: "expo.out" }, start);
+        tl.fromTo([`#${inId}-l-sh`, `#${inId}-r-sh`], { opacity: 1 }, { opacity: 0, duration: dur, ease: "power2.out" }, start);
+      }
+
+      // supers rise line-by-line through a mask, leave with a short fade
+      function superIn(k, n, a, b) {
+        const box = `#t${k}`;
+        tl.fromTo(box, { opacity: 0 }, { opacity: 1, duration: 0.01 }, a - 0.01);
+        for (let j = 0; j < n; j++) {
+          tl.fromTo(`#t${k}-${j}`, { yPercent: 110 }, { yPercent: 0, duration: 0.7, ease: "expo.out" }, a + j * 0.35);
+        }
+        tl.to(box, { opacity: 0, duration: 0.3, ease: "power2.in" }, b - 0.3);
+        tl.set(box, { opacity: 0 }, 0);
+      }
+
+      /*TRANSITIONS*/
+
+      // lower-third scrim only while lifestyle supers are up
+      tl.fromTo("#lower-scrim", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 4.4);
+      tl.to("#lower-scrim", { opacity: 0, duration: 0.4 }, 32.6);
+
+      // open from black, gentle push on the first macro
+      tl.fromTo("#blackout", { opacity: 1 }, { opacity: 0, duration: 1.2, ease: "power2.out" }, 0.1);
+      tl.fromTo("#s1", { scale: 1.04 }, { scale: 1, duration: 4, ease: "none" }, 0);
+
+      // end card
+      tl.set(["#endcard", "#end-date"], { opacity: 0 }, 0);
+      tl.set(["#endcard", "#end-date"], { opacity: 1 }, 33.3);
+      tl.fromTo("#end-logo-in", { opacity: 0, y: 30, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 1.1, ease: "expo.out" }, 33.5);
+      tl.fromTo("#end-tag-in", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 1.0, ease: "expo.out" }, 34.3);
+      tl.fromTo("#end-date-in", { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power2.out" }, 35.4);
+      tl.to("#blackout", { opacity: 1, duration: 1.0, ease: "power1.in" }, 39.0);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

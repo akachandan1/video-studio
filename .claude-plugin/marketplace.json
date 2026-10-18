@@ -1,0 +1,11 @@
+{
+  "name": "video-studio",
+  "owner": { "name": "Chandan" },
+  "plugins": [
+    {
+      "name": "video-studio",
+      "source": "./",
+      "description": "HyperFrames-powered video workflows for Claude Code. Run setup/setup.sh once for the tools."
+    }
+  ]
+}
