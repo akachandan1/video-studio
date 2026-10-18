@@ -1,0 +1,18 @@
+name: Bug report
+description: Something in the studio doesn't work
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes: { label: "What happened?", description: "What you asked Claude / ran, and what went wrong." }
+    validations: { required: true }
+  - type: textarea
+    id: doctor
+    attributes: { label: "Output of setup/doctor.sh", render: text }
+    validations: { required: true }
+  - type: input
+    id: macos
+    attributes: { label: "macOS version + chip", placeholder: "macOS 26.1, M3" }
+  - type: textarea
+    id: logs
+    attributes: { label: "Error output / lint report", render: text }

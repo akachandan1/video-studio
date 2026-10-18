@@ -1,0 +1,31 @@
+name: CI
+on:
+  push: { branches: [main] }
+  pull_request:
+jobs:
+  check:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Shell syntax
+        run: bash -n setup/setup.sh && bash -n setup/doctor.sh
+      - name: JSON
+        run: |
+          for f in .claude/settings.json .claude-plugin/*.json templates/*/*.json; do python -m json.tool "$f" > /dev/null || exit 1; done
+      - name: Python compiles
+        run: python -m compileall -q .claude/skills templates examples docs/media/src
+      - name: Skill front-matter
+        run: |
+          for f in .claude/skills/*/SKILL.md; do
+            head -5 "$f" | grep -q '^name:' && head -8 "$f" | grep -q '^description:' || { echo "bad front-matter in $f"; exit 1; }
+          done
+      - name: Templates build + HyperFrames lint
+        run: |
+          pip install -q numpy scipy
+          HF=$(grep HYPERFRAMES_VERSION setup/versions.env | cut -d= -f2 | cut -d' ' -f1)
+          cd templates/hello-world && python score.py && npx --yes hyperframes@$HF lint && cd ../..
+          cd templates/chop-reel && python score.py && for a in 169 916; do python build.py $a && npx --yes hyperframes@$HF lint || exit 1; done

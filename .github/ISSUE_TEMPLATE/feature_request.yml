@@ -1,0 +1,11 @@
+name: Feature / workflow request
+description: A video type, technique or tool you'd like the studio to handle
+labels: [enhancement]
+body:
+  - type: textarea
+    id: goal
+    attributes: { label: "What do you want to make?", description: "Link a reference video if you can." }
+    validations: { required: true }
+  - type: textarea
+    id: how
+    attributes: { label: "Ideas for how (tools", techniques), description: Optional }

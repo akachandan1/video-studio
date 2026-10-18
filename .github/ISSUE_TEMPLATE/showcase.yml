@@ -1,0 +1,18 @@
+name: Showcase
+description: Share something you made with Video Studio
+labels: [showcase]
+body:
+  - type: input
+    id: link
+    attributes: { label: "Link to the video" }
+    validations: { required: true }
+  - type: textarea
+    id: how
+    attributes: { label: "Which workflows/tools did you use? Anything you'd add to the playbook?" }
+  - type: checkboxes
+    id: ok
+    attributes:
+      label: Permission
+      options:
+        - label: I own this video (or have the rights) and it may be featured in the README gallery.
+          required: true
