@@ -1,3 +1,4 @@
+# Motion Prompt #001 #008 (spring form) · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/
 """Writes the 'Now make it sing' clip (3.6 s) for a given aspect: python3 build.py 1920 1080 | 1080 1920"""
 import sys, json, pathlib
 W, H = int(sys.argv[1]), int(sys.argv[2])

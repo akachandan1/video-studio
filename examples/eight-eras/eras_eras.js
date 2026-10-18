@@ -1,3 +1,4 @@
+// Adapted from huashu-art-motion (scripts/engine/eras_gallery.js) · MIT License (c) 2026 alchaincyf (花叔 · 花生) · https://github.com/alchaincyf/huashu-art-motion
 // 八个时代样片：skill 里 35 种风格（15 原段＋迁移测试 A–D 的 20 段）各一段，按年代排，用作回归测试与风格目录。
 //   打开：index.html?film=gallery    渲染：render.py --film gallery    验收：qa.py --project scripts/engine --film gallery
 // 每段 5 个八分音符（128 BPM ≈ 1.17s），最后一段 6 个。相邻段用「进入段」的签名转场（原 16 段沿用原片转场，A–D 组用各自配方卡里的转场；

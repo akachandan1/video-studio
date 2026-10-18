@@ -14,7 +14,8 @@ a workflow, a template, a transition, a sound, or a house rule learned the hard 
 ## Ground rules
 1. **HyperFrames is the core.** New tools should produce assets that HyperFrames assembles, not replace it.
 2. **No third-party code copied in.** Add it to `setup/setup.sh` (installed from its official source) and to
-   `ACKNOWLEDGMENTS.md` + `docs/CATALOG.md`.
+   `ACKNOWLEDGMENTS.md` + `docs/CATALOG.md`. If you adapt or port someone's code or specs, keep their
+   attribution line in the file and add their license text to `THIRD_PARTY_NOTICES.md`.
 3. **No client material, footage you don't own, brand assets, or keys.** Examples must be original or properly licensed.
 4. **Free by default.** Paid generation must stay optional and must always quote its cost before running.
 5. Keep commands copy-pasteable and paths quoted (folders often contain spaces).

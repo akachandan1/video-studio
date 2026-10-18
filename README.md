@@ -204,7 +204,8 @@ templates and playbook rules are the most valuable contributions.
 Built on [HyperFrames](https://github.com/heygen-com/hyperframes),
 [huashu-art-motion](https://github.com/alchaincyf/huashu-art-motion),
 [motion-prompt](https://github.com/showheyohtaki/motion-prompt), Kokoro, WhisperX, DeepFilterNet, FFmpeg and
-more. See [ACKNOWLEDGMENTS.md](ACKNOWLEDGMENTS.md). Video Studio is an independent project, not affiliated
+more. See [ACKNOWLEDGMENTS.md](ACKNOWLEDGMENTS.md) for every project, person and license, and
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for the license texts of the adapted code and bundled fonts. Video Studio is an independent project, not affiliated
 with Anthropic or HeyGen.
 
 ## License

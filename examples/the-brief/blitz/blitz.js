@@ -1,3 +1,4 @@
+// Scene written for the huashu-art-motion engine (uses its PAINT/TOON/CAM APIs) · engine: MIT License (c) 2026 alchaincyf (花叔 · 花生) · https://github.com/alchaincyf/huashu-art-motion
 // 'The Brief' art blitz. One product scene — DOT, an orange sphere speaker on a pedestal — drawn once as flat geometry,
 // then repainted per style with huashu's renderers. Layout is relative to the stage (works at 1920×1080 and 1080×1920).
 (() => {

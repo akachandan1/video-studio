@@ -1,3 +1,4 @@
+// Motion Prompt #001 #002 #003 #004 #005 #006 #007 #008 #010 #011 #015 #017 #019 #020 #022 #023 #024 #034 #038 #039 #040 #041 #043 #046 #056 #069 #085 (moves ported from their published specs) · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/
 // 'The Brief' — chop-cut showreel engine. One canvas, one shot list on a 150 BPM grid (beat 0.4 s).
 // Every frame is a pure function of t. Motion Prompt moves are ported from their published specs (numbers cited inline).
 // Layout is relative to the stage (W×H), so the same edit renders 16:9 and 9:16.

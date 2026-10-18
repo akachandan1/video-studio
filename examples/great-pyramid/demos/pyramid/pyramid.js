@@ -1,3 +1,4 @@
+// Scene written for the huashu-art-motion engine (uses its PAINT/TOON/CAM APIs) · engine: MIT License (c) 2026 alchaincyf (花叔 · 花生) · https://github.com/alchaincyf/huashu-art-motion
 // "What's inside the Great Pyramid?" — Kurzgesagt-style flat science, one continuous world + one camera.
 // Cross-section is to scale (1200 px base = 230.3 m → 5.21 px/m): passage angles ~26.5°, King's Chamber floor 43 m,
 // Queen's Chamber 21 m, Subterranean Chamber ~30 m below ground, relieving chambers ~17 m stack above the King's Chamber.

@@ -1,3 +1,4 @@
+// Motion Prompt #001 #008 (spring pop) #024 (impact shake) #043 (whip pan) — adapted · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/
 // Chop-reel engine — CapCut-style fast edit on one canvas. Every frame is a pure function of t (deterministic render).
 // EDIT THIS FILE: palette, SHOTS (the edit), scene functions, and the FX lists (PUNCH / FLASH / SHAKES / WHIPS).
 // Layout is relative to the stage (W×H, M = short side) so the same edit renders 16:9 and 9:16 (build.py 169 | 916).
